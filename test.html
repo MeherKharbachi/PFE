@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Guardian Scraper &#8212; Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
+    <title>Introduction &#8212; Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,7 +51,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Literature review" href="Literature_review.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,14 +94,14 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Literature_review.html">
    Literature review
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Theguardian_scraper.html">
    The Guardian Scraper
   </a>
  </li>
@@ -147,7 +146,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Theguardian_scraper.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/test.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -167,7 +166,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTheguardian_scraper.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftest.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -188,7 +187,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Theguardian_scraper.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/test.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -211,13 +210,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-preliminary-examination-of-the-guardian-s-website">
-   A preliminary examination of the Guardian’s website
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-of-the-scraper-output">
-   Example of the scraper output
+  <a class="reference internal nav-link" href="#hhh">
+   hhh
   </a>
  </li>
 </ul>
@@ -230,7 +224,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The Guardian Scraper</h1>
+                <h1>Introduction</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -241,13 +235,8 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-preliminary-examination-of-the-guardian-s-website">
-   A preliminary examination of the Guardian’s website
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-of-the-scraper-output">
-   Example of the scraper output
+  <a class="reference internal nav-link" href="#hhh">
+   hhh
   </a>
  </li>
 </ul>
@@ -259,89 +248,12 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-guardian-scraper">
-<h1>The Guardian Scraper<a class="headerlink" href="#the-guardian-scraper" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>Scraping Premier League Previews from the Guardian.</p>
-</div></blockquote>
-<p>To reach the aim of our project, we have begun the first task, which is to collect football experts’ comments and data from English Premier League matches.
-<br>For this task, we will use match previews from “The Guardian.” It goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
-<br>Indeed, “The Guardian’s” football experts publish previews every week, usually two or three days before the matches.
-<br>In this regard, we began by creating a data extraction tool that will allow us to extract this information on a regular basis.
-<br>The information to be extracted is as follows:</p>
-<ul class="simple">
-<li><p>The names of the competing teams.</p></li>
-<li><p>The date of the game</p></li>
-<li><p>The identity of the referee</p></li>
-<li><p>The stadium’s name</p></li>
-<li><p>Sports odds that will be converted to decimal format</p></li>
-<li><p>The football expert’s text</p></li>
-<li><p>The text’s author.</p></li>
-</ul>
-<div class="section" id="a-preliminary-examination-of-the-guardian-s-website">
-<h2>A preliminary examination of the Guardian’s website<a class="headerlink" href="#a-preliminary-examination-of-the-guardian-s-website" title="Permalink to this headline">¶</a></h2>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Issues</p></th>
-<th class="head"><p>Solutions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>4 possible formats for previews(old format, new format,Cup’s format and a particular format)</p></td>
-<td><p>Select the appropriate html tags</p></td>
-</tr>
-<tr class="row-odd"><td><p>Preview titles are not the same ( we can find Squad Sheets or match preview)</p></td>
-<td><p>Pick only the names of the teams and eliminate the rest</p></td>
-</tr>
-<tr class="row-even"><td><p>The date of the match is not always available</p></td>
-<td><p>Pick the preview date</p></td>
-</tr>
-<tr class="row-odd"><td><p>The order of the elements and labels are not the same</p></td>
-<td><p>Using regex patterns to get information</p></td>
-</tr>
-<tr class="row-even"><td><p>Missing values for betting odds</p></td>
-<td><p>We treat the general case separately and we set up specific regex patterns for these particular cases</p></td>
-</tr>
-<tr class="row-odd"><td><p>Odds format is different</p></td>
-<td><p>We treat the general case separately and we set up specific regex patterns for these particular cases</p></td>
-</tr>
-<tr class="row-even"><td><p>We can find non-numeric values for Odds like (Evens,evens,Eve,odds-on)</p></td>
-<td><p>Replace evens by 1-1</p></td>
-</tr>
-<tr class="row-odd"><td><p>There are some previews that don’t have author and text</p></td>
-<td><p>For previews that have no text, we put None (not available)</p></td>
-</tr>
-<tr class="row-even"><td><p>The existence of previews for the FA CUP,Carabao Cup,Champions league,World Cup</p></td>
-<td><p>Filter previews by checking if the match exists in “Opta” database, and pick only Premier League match</p></td>
-</tr>
-<tr class="row-odd"><td><p>We are not sure if the names of the teams are the same as the ones in Opta</p></td>
-<td><p>Set up a dictionary or check manually to map teams to their IDs</p></td>
-</tr>
-<tr class="row-even"><td><p>When we send many requests, the guardian server blocks your IP address, which is interpreted as a DDOS attack</p></td>
-<td><p>Do a sleep of a random x seconds between requests or change IP address and work with rotating proxy</p></td>
-</tr>
-</tbody>
-</table>
-<p><b>The guardian</b> previews are spread across several pages, so our extraction tool will go through all of them, extracting the previews as it goes.
-<br>Indeed, the scraper extracts information from <b>Premier League</b> match previews using two methods:
-<br>The first method is to use the api provided by <b>The Guardian’s</b> website, by introducing a connection key and a well-parsed portion of the link.
-<br>For example, a link is formatted as <a class="reference external" href="https://www.theguardian.com/football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league">https://www.theguardian.com/football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league</a>, <b>the guardian</b> API only requires “football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league.”
-<br>However, this method is not always reliable because the API is not always functional for some previews. So, in this case, our scraper employs its second method, which is the traditional approach of scraping the html format of the pages.
-<br>We identified some special cases by analyzing the website; there are some changes in form and content, so we attempted to find a set of regular expressions that dealt with generic and special cases in order to locate the various information.
-<br>Following the data extraction stage, information will be normalized and cleaned, and betting odds extracted from the previews will be converted to a decimal format.
-<br>Then, to ensure that we are only extracting <b>English Premier League</b> matches, we map the extracted preview by its equivalent in a database called <b>Opta</b> by introducing the names of the two opposing teams, the competition id, and the closest game date to the date of the preview. This mapping returns the match id and the date of the game.
-However, <b>Opta</b> is a trustworthy database provided by <b>Opta Sport</b>, the pan-European leader in the supply of sports information data.
-Moreover, prior to this phase, we were unsure of the correspondence between the names of the teams written by <b>the guardian</b> and the names of the teams in <b>Opta</b>. For example, a single team can be referred to in several ways, such as <b>Manchester United, Manchester Utd, Man United, Man Utd</b> and so on.
-<br>To address this issue, we created a dictionary containing the various possible names of <b>103 English teams</b> competing in the first and second divisions. This dataset was created in two ways: the first using <b>Opta</b>, which provides the various team aliases, and the second manually, in which we added other nicknames that were not provided.
-<br>Finally, once the mapping process is done, this information will be gradually stored in a <b>Mongodb</b> database, specifically in a collection called <b>Previews</b>.
-<br>It should be noted that when the scraper is launched, it checks the last date stored in the <b>Previews</b> collection to determine at what level it will stop.
-<br>This scraper has extracted data from 2009 to the present and is <b> operational in a production environment </b>.
-<br>Our package is <b>open source</b> and freely available to all developers on <b>Github</b> and <b>Pypi</b> (default software repository for Python developers to store created Python programming language).</p>
-</div>
-<div class="section" id="example-of-the-scraper-output">
-<h2>Example of the scraper output<a class="headerlink" href="#example-of-the-scraper-output" title="Permalink to this headline">¶</a></h2>
-<p><img alt="The scraper output!" src="_images/scraper_output_1.png" /></p>
-<p><img alt="The scraper output!" src="_images/scraper_output_2.png" /></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>kldsklsdkl</p>
+<div class="section" id="hhh">
+<h2>hhh<a class="headerlink" href="#hhh" title="Permalink to this headline">¶</a></h2>
+<p>ddd</p>
 </div>
 </div>
 
@@ -369,14 +281,7 @@ Moreover, prior to this phase, we were unsure of the correspondence between the 
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Literature_review.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Literature review</p>
-        </div>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
