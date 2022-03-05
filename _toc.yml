@@ -2,8 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: Intro
 chapters:
 - file: Literature_review
 - file: Theguardian_scraper
-- file: Task_2_ NLP_Review
+- file: Task_2_NLP_Review
