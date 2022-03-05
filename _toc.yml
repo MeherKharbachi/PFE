@@ -6,3 +6,4 @@ root: intro
 chapters:
 - file: Literature_review
 - file: Theguardian_scraper
+- file: Task_2_ NLP_Review
