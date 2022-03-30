@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
+    <title>A multi-task learning approach to predict the outcome of a football game using human experts input &#8212; Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,15 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Literature review" href="Literature_review.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -67,8 +67,58 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-2 bd-sidebar site-navigation show single-page" id="site-navigation">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Predicting Football Match Outcomes using Machine Learning and Human Experts input</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 current">
+  <a class="reference internal" href="#">
+   A multi-task learning approach to predict the outcome of a football game using human experts input
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Literature_review.html">
+   Literature review
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Theguardian_scraper.html">
+   The Guardian Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Task_2_NLP_Review.html">
+   Task 2 NLP Review
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -83,7 +133,33 @@
         <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
         <div class="col pl-md-4 topbar-main">
             
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
             
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -133,29 +209,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Literature_review">
-   Literature review
-  </a>
- </li>
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Theguardian_scraper">
-   The Guardian Scraper
-  </a>
- </li>
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Task_2_NLP_Review">
-   Task 2 NLP Review
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -168,29 +221,6 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Literature_review">
-   Literature review
-  </a>
- </li>
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Theguardian_scraper">
-   The Guardian Scraper
-  </a>
- </li>
- <li class="toctree-l1 toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="Intro.html#document-Task_2_NLP_Review">
-   Task 2 NLP Review
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -201,255 +231,6 @@
 <h1>A multi-task learning approach to predict the outcome of a football game using human experts input<a class="headerlink" href="#a-multi-task-learning-approach-to-predict-the-outcome-of-a-football-game-using-human-experts-input" title="Permalink to this headline">¶</a></h1>
 <p>In this work, we propose to exploit a new type of data to capture the game environment. We will extend the methodology described in and build a multi-head multi task deep learning network able to digest both Text data provided by human football experts and more standard time series tabular data. The results will be compared to traditional and machine learning approaches described in the literature.</p>
 <div class="toctree-wrapper compound">
-<span id="document-Literature_review"></span><div class="tex2jax_ignore mathjax_ignore section" id="literature-review">
-<h2>Literature review<a class="headerlink" href="#literature-review" title="Permalink to this headline">¶</a></h2>
-<p>Data analytics has been adopted by most industries, including football. However, the availability of football match data has increased in recent years, allowing anyone involved in football to gain hidden knowledge and predict outcomes.</p>
-<p>In our literature review, we will concentrate on models that predict the outcomes of football matches based on various baselines. These baselines are statistical and machine learning approaches that rely on statistical machine learning based on historical data about individual teams.</p>
-<div class="section" id="statistical-approaches">
-<h3>Statistical approaches<a class="headerlink" href="#statistical-approaches" title="Permalink to this headline">¶</a></h3>
-<p><br>The very first generation of football-related models focused on the distribution of the number of goals scored during a football game.
-<br>Starting by <cite id="3v4le"><a href="#zotero|11983139/Y23ZDDQG">(Maher, 1982)</a></cite> included a general model that uses an independent poisson distribution to approximate a team’s scoring frequency. However, this model assumes that each team’s home, away, attack, and defense parameters are constant.
-<br> <cite id="0tzsj"><a href="#zotero|11983139/C7ER7JJY">(Dixon &amp; Coles, 1997)</a></cite> claimed in their paper that the previous model has certain limitations, such as low score results (0-0, 1-0, 0-1, and 1-1) being inherently unreported and each team’s scoring and defending abilities being regarded as constant over time.
-<br>They proposed a new model with some specific enhancements. This model is a <b>bivariate poisson distribution</b> with parameters based on past performance for the number of goals scored by each team. This implies that recent matches have a greater impact on strength estimates.
-<br>Unlike previous models that used a <b>Poisson distribution</b>, <cite id="57q3t"><a href="#zotero|11983139/RPMV87I5">(Boshnakov et al., 2017)</a></cite> proposed a new approach that uses an independent and identically distributed <b>Weibull distribution</b> for the number of goals scored by the home and away teams in a match. Furthermore, they allowed for dependence between the goals scored by the two teams by using a copula to generate a bivariate distribution with positive or negative dependence.
-They compared this <b>bivariate Weibull</b> model to the others and discovered that it provides a good fit to <b>English Premier League</b> data from 2006/2007 to 2015/2016 seasons and achieves positive betting returns.</p>
-</div>
-<div class="section" id="bookmakers-predictions">
-<h3>Bookmakers predictions<a class="headerlink" href="#bookmakers-predictions" title="Permalink to this headline">¶</a></h3>
-<p>Making bets on the outcome of football matches has a long history around the world, and typically entails selecting matches that are thought to be the most likely to end in a draw.
-Bookmakers provide odds on a match’s various outcomes and the simplest version of this relies exclusively on the results which can be a win by either the team playing at home or the team playing away, or a draw. More complex bets on the score or the half-time and full-time results are also available.
-<br>Football match predictions is a very complex problem in which the outcome of the game is predicted based on the teams’ previous performance and the relative abilities of the players in the teams. This implies that the team with the best players should win.
-<br>Bookmakers set their odds based on this challenge and employ sophisticated pricing models that assign “odds” to different outcomes in order to maximize their chances of profit.
-<br>According to <cite id="lkvq5"><a href="#zotero|11983139/KXPDVVLV">(Beal et al., 2019)</a></cite>, bookmakers’ accuracy was around 67% for <b>American football</b>, 74% for <b>basketball</b>, 64% for <b>cricket</b>, 61% for <b>baseball</b>, and only 54% for <b>football</b> during the 2017/2018 season. This is due to the fact that the frequency of goals is far lower than the frequency of points scored in the other sports.</p>
-</div>
-<div class="section" id="machine-learning-approaches">
-<h3>Machine Learning approaches<a class="headerlink" href="#machine-learning-approaches" title="Permalink to this headline">¶</a></h3>
-<p>To date, <b>probabilistic methods</b> have yielded limited results and appear to have reached a plateau in terms of accuracy because team performance is dependent not only on team abilities but also on a variety of dynamic factors such as team configurations, player health, match location, weather, team strategies, and other external factors.
-As a result predicting football match outcomes becomes a very complex computational problem.
-<br>Among the <b>machine learning</b> methods interested in football match predictions, we highlight <b>sentimental analysis</b> of social media platforms. These studies focus on opinion aggregation and underscore the importance of hidden information contained in the sentiment of fans publications.
-<br> True, fans tweets are unlikely to influence game outcomes, unless they are used to exceptionally motivate or demotivate a team. For example, supporters use social media platforms like <b>Twitter</b> to express their personal feelings, primarily about the team they are following and their next opponent’s strengths, weaknesses, and prospects, and this can sometimes help establish betting odds.
-<br>This method is used by <cite id="ua7k3"><a href="#zotero|11983139/YREYVCH5">(Schumaker et al., 2016)</a></cite> to predict <b>English Premier League</b> matches by analyzing fans tweets during the final three months of the 2013–2014 from February 16 through May 11 2014. It achieved an accuracy of 50%,this system has only two possible outcomes: home team win or away team win. If the model’s number of Home or Away tweets was zero, the match was not considered for that model. However, it was discovered that sentiment was unable to recognize a draw outcome, so this category was dropped.
-<br>As well as that, <cite id="nqba9"><a href="#zotero|11983139/HV42R7G5">(Baboota &amp; Kaur, 2019)</a></cite> investigates the application of machine learning techniques to predict football match outcomes and compares the results to bookmakers. They employ feature engineering and exploratory data analysis to identify the feature set that contains the most important factors for predicting match outcome. The authors put <b>Gaussian naive Bayes</b>, <b>SVM</b>, <b>Random forest</b>, and <b>Gradient boosting</b> to the test. They used training data from 2005 to 2014 in the <b>EPL</b> (English Premier League) and discovered that the <b>Gradient boosting</b> method performed the best with an accuracy of 56.7 %</p>
-<p>Moreover, to address weaknesses described above, recently, a new technique has emerged <cite id="0qktm"><a href="#zotero|11983139/J4T53NKQ">(Beal et al., 2020)</a></cite> that incorporates human expertise and judgment, such as media information, rather than just basic performance statistics, which has helped improve prediction accuracy.
-<br>These new baselines used a dataset of 6 seasons of <b>English Premier League</b> games from 2013/14 to 2018/19, including football match data, the <b>Guardian</b> previews and predictions from bookmakers odds for 1770 games, employing both statistical machine learning techniques and <b>Natural Language Processing</b>.
-<br>When <b>NLP</b> methods, <b>statistical approaches</b>, and <b>bookmakers predictions</b> were compared to the ensemble learning approach which combines the first three techniques and uses a <b>Random forest classifier</b>, the results revealed that these methods could be improved.
-<br>It achieved an accuracy of 63.2 %, a 10.8 % increase over <b>the bookmakers’</b> accuracy(52.43%), 4.1 % more than <cite id="ysqbf"><a href="#zotero|11983139/C7ER7JJY">(Dixon &amp; Coles, 1997)</a></cite> (59.11%) and a 13 % improvement over </b>the sentiment analysis</b> approach in <cite id="onivn"><a href="#zotero|11983139/YREYVCH5">(Schumaker et al., 2016)</a></cite>.
-<br>Experiments revealed that using the ensemble model increases the likelihood of predicting draws and longshot results. This is especially true when the text vectors model identifies more longshots (38.9 %) by taking into account human input, whereas the first three models are typically poor at predicting these events.</p>
-</div>
-<div class="section" id="our-contribution">
-<h3>Our contribution<a class="headerlink" href="#our-contribution" title="Permalink to this headline">¶</a></h3>
-<p>In most <b>machine learning</b> situations, we are only concerned with one problem at a time. Whatever the task, the problem is typically outlined as using data to solve or optimize a single metric at a time. However, this approach will eventually reach a performance limit, which is often due to the size of the dataset or the model’s ability to derive meaningful representations from it.
-<br>On the other hand, <b>multitasking learning</b> is a machine learning approach in which we attempt to learn multiple tasks at the same time while optimizing multiple loss functions.Instead of training separate models for each task, we expect a single model to learn how to perform all tasks simultaneously.<br> The model uses all of the data available in the various tasks to learn generalized representations of the data that are useful in multiple contexts during this process.
-<br>Our contribution to this project is to extend the methodology described in <cite id="od7fx"><a href="#zotero|11983139/J4T53NKQ">(Beal et al., 2020)</a></cite> which consists of developing a model that ensembles three separate models trained separately and to build a <b>multi-head</b>, <b>multi-task</b> deep learning network <cite id="s8i0w"><a href="#zotero|11983139/6ZJ7BSPZ">(Vafaeikia et al., 2020)</a></cite> capable of capturing the game environment as well as more standard time series tabular data. This dataset includes, until now, 3880 <b>English Premier League</b> match previews from 2009 to the present.
-<br>The findings will be compared to traditional and machine learning approaches described in the literature, and the following question will be addressed: <br><b>Do football experts’ human analysis influence the predictions of football matches?</b></p>
-</div>
-<div class="section" id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
-<!-- BIBLIOGRAPHY START -->
-<div class="csl-bib-body">
-  <div class="csl-entry"><i id="zotero|11983139/HV42R7G5"></i>Baboota, R., &#38; Kaur, H. (2019). Predictive analysis and modelling football results using machine learning approach for English Premier League. <i>International Journal of Forecasting</i>, <i>35</i>(2), 741–755. https://doi.org/10.1016/j.ijforecast.2018.01.003</div>
-  <div class="csl-entry"><i id="zotero|11983139/J4T53NKQ"></i>Beal, R., Middleton, S. E., Norman, T. J., &#38; Ramchurn, S. D. (2020). Combining Machine Learning and Human Experts to Predict Match Outcomes in Football: A Baseline Model. <i>arXiv:2012.04380 [Cs]</i>. http://arxiv.org/abs/2012.04380</div>
-  <div class="csl-entry"><i id="zotero|11983139/KXPDVVLV"></i>Beal, R., Norman, T. J., &#38; Ramchurn, S. D. (2019). Artificial intelligence for team sports: a survey. <i>The Knowledge Engineering Review</i>, <i>34</i>. https://doi.org/10.1017/S0269888919000225</div>
-  <div class="csl-entry"><i id="zotero|11983139/RPMV87I5"></i>Boshnakov, G., Kharrat, T., &#38; McHale, I. G. (2017). A bivariate Weibull count model for forecasting association football scores. <i>International Journal of Forecasting</i>, <i>33</i>(2), 458–466. https://doi.org/10.1016/j.ijforecast.2016.11.006</div>
-  <div class="csl-entry"><i id="zotero|11983139/C7ER7JJY"></i>Dixon, M. J., &#38; Coles, S. G. (1997). Modelling Association Football Scores and Inefficiencies in the Football Betting Market. <i>Journal of the Royal Statistical Society: Series C (Applied Statistics)</i>, <i>46</i>(2), 265–280. https://doi.org/10.1111/1467-9876.00065</div>
-  <div class="csl-entry"><i id="zotero|11983139/Y23ZDDQG"></i>Maher, M. J. (1982). Modelling association football scores. <i>Statistica Neerlandica</i>, <i>36</i>(3), 109–118. https://doi.org/10.1111/j.1467-9574.1982.tb00782.x</div>
-  <div class="csl-entry"><i id="zotero|11983139/YREYVCH5"></i>Schumaker, R. P., Jarmoszko, A. T., &#38; Labedz, C. S. (2016). Predicting wins and spread in the Premier League using a sentiment analysis of twitter. <i>Decision Support Systems</i>, <i>88</i>, 76–84. https://doi.org/10.1016/j.dss.2016.05.010</div>
-  <div class="csl-entry"><i id="zotero|11983139/6ZJ7BSPZ"></i>Vafaeikia, P., Namdar, K., &#38; Khalvati, F. (2020). A Brief Review of Deep Multi-task Learning and Auxiliary Task Learning. <i>arXiv:2007.01126 [Cs, Stat]</i>. http://arxiv.org/abs/2007.01126</div>
-</div>
-<!-- BIBLIOGRAPHY END --></div>
-</div>
-<span id="document-Theguardian_scraper"></span><div class="tex2jax_ignore mathjax_ignore section" id="the-guardian-scraper">
-<h2>The Guardian Scraper<a class="headerlink" href="#the-guardian-scraper" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Scraping Premier League Previews from the Guardian.</p>
-</div></blockquote>
-<p>To reach the aim of our project, we have begun the first task, which is to collect football experts’ comments and data from English Premier League matches.
-<br>For this task, we will use match previews from “The Guardian.” It goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
-<br>Indeed, “The Guardian’s” football experts publish previews every week, usually two or three days before the matches.
-<br>In this regard, we began by creating a data extraction tool that will allow us to extract this information on a regular basis.
-<br>The information to be extracted is as follows:</p>
-<ul class="simple">
-<li><p>The names of the competing teams.</p></li>
-<li><p>The date of the game</p></li>
-<li><p>The identity of the referee</p></li>
-<li><p>The stadium’s name</p></li>
-<li><p>Sports odds that will be converted to decimal format</p></li>
-<li><p>The football expert’s text</p></li>
-<li><p>The text’s author.</p></li>
-</ul>
-<div class="section" id="a-preliminary-examination-of-the-guardian-s-website">
-<h3>A preliminary examination of the Guardian’s website<a class="headerlink" href="#a-preliminary-examination-of-the-guardian-s-website" title="Permalink to this headline">¶</a></h3>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Issues</p></th>
-<th class="head"><p>Solutions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>4 possible formats for previews(old format, new format,Cup’s format and a particular format)</p></td>
-<td><p>Select the appropriate html tags</p></td>
-</tr>
-<tr class="row-odd"><td><p>Preview titles are not the same ( we can find Squad Sheets or match preview)</p></td>
-<td><p>Pick only the names of the teams and eliminate the rest</p></td>
-</tr>
-<tr class="row-even"><td><p>The date of the match is not always available</p></td>
-<td><p>Pick the preview date</p></td>
-</tr>
-<tr class="row-odd"><td><p>The order of the elements and labels are not the same</p></td>
-<td><p>Using regex patterns to get information</p></td>
-</tr>
-<tr class="row-even"><td><p>Missing values for betting odds</p></td>
-<td><p>We treat the general case separately and we set up specific regex patterns for these particular cases</p></td>
-</tr>
-<tr class="row-odd"><td><p>Odds format is different</p></td>
-<td><p>We treat the general case separately and we set up specific regex patterns for these particular cases</p></td>
-</tr>
-<tr class="row-even"><td><p>We can find non-numeric values for Odds like (Evens,evens,Eve,odds-on)</p></td>
-<td><p>Replace evens by 1-1</p></td>
-</tr>
-<tr class="row-odd"><td><p>There are some previews that don’t have author and text</p></td>
-<td><p>For previews that have no text, we put None (not available)</p></td>
-</tr>
-<tr class="row-even"><td><p>The existence of previews for the FA CUP,Carabao Cup,Champions league,World Cup</p></td>
-<td><p>Filter previews by checking if the match exists in “Opta” database, and pick only Premier League match</p></td>
-</tr>
-<tr class="row-odd"><td><p>We are not sure if the names of the teams are the same as the ones in Opta</p></td>
-<td><p>Set up a dictionary or check manually to map teams to their IDs</p></td>
-</tr>
-<tr class="row-even"><td><p>When we send many requests, the guardian server blocks your IP address, which is interpreted as a DDOS attack</p></td>
-<td><p>Do a sleep of a random x seconds between requests or change IP address and work with rotating proxy</p></td>
-</tr>
-</tbody>
-</table>
-<p><b>The guardian</b> previews are spread across several pages, so our extraction tool will go through all of them, extracting the previews as it goes.
-<br>Indeed, the scraper extracts information from <b>Premier League</b> match previews using two methods:
-<br>The first method is to use the api provided by <b>The Guardian’s</b> website, by introducing a connection key and a well-parsed portion of the link.
-<br>For example, a link is formatted as <a class="reference external" href="https://www.theguardian.com/football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league">https://www.theguardian.com/football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league</a>, <b>the guardian</b> API only requires “football/2022/feb/12/newcastle-aston-villa-match-preview-premier-league.”
-<br>However, this method is not always reliable because the API is not always functional for some previews. So, in this case, our scraper employs its second method, which is the traditional approach of scraping the html format of the pages.
-<br>We identified some special cases by analyzing the website; there are some changes in form and content, so we attempted to find a set of regular expressions that dealt with generic and special cases in order to locate the various information.
-<br>Following the data extraction stage, information will be normalized and cleaned, and betting odds extracted from the previews will be converted to a decimal format.
-<br>Then, to ensure that we are only extracting <b>English Premier League</b> matches, we map the extracted preview by its equivalent in a database called <b>Opta</b> by introducing the names of the two opposing teams, the competition id, and the closest game date to the date of the preview. This mapping returns the match id and the date of the game.
-However, <b>Opta</b> is a trustworthy database provided by <b>Opta Sport</b>, the pan-European leader in the supply of sports information data.
-Moreover, prior to this phase, we were unsure of the correspondence between the names of the teams written by <b>the guardian</b> and the names of the teams in <b>Opta</b>. For example, a single team can be referred to in several ways, such as <b>Manchester United, Manchester Utd, Man United, Man Utd</b> and so on.
-<br>To address this issue, we created a dictionary containing the various possible names of <b>103 English teams</b> competing in the first and second divisions. This dataset was created in two ways: the first using <b>Opta</b>, which provides the various team aliases, and the second manually, in which we added other nicknames that were not provided.
-<br>Finally, once the mapping process is done, this information will be gradually stored in a <b>Mongodb</b> database, specifically in a collection called <b>Previews</b>.
-<br>It should be noted that when the scraper is launched, it checks the last date stored in the <b>Previews</b> collection to determine at what level it will stop.
-<br>This scraper has extracted data from 2009 to the present and is <b> operational in a production environment </b>.
-<br>Our package is <b>open source</b> and freely available to all developers on <b>Github</b> and <b>Pypi</b> (default software repository for Python developers to store created Python programming language).</p>
-</div>
-<div class="section" id="example-of-the-scraper-output">
-<h3>Example of the scraper output<a class="headerlink" href="#example-of-the-scraper-output" title="Permalink to this headline">¶</a></h3>
-<p><img alt="The scraper output!" src="_images/scraper_output_1.png" /></p>
-<p><img alt="The scraper output!" src="_images/scraper_output_2.png" /></p>
-</div>
-</div>
-<span id="document-Task_2_NLP_Review"></span><div class="tex2jax_ignore mathjax_ignore section" id="task-2-nlp-review">
-<h2>Task 2 NLP Review<a class="headerlink" href="#task-2-nlp-review" title="Permalink to this headline">¶</a></h2>
-<p>After completing our first task, which was to extract previews from the Guardian website, we began our second task, which was to reproduce the results of the <cite id="cfvjb"><a href="#zotero|11983139/J4T53NKQ">(Beal et al., 2020)</a></cite> article by processing and analyzing the texts that we had extracted.
-The article’s authors proceeded as follows:</p>
-<ul class="simple">
-<li><p><b> Information extraction</b>: they extracted the main features of each sentence in the article’s text.</p></li>
-<li><p><b>Allocation of Text Context</b>: each sentence is assigned to a team.</p></li>
-<li><p><b>Text Vectorisation</b>: they converted the sentences into vectors using a Count Vectorizer technique to have a numerical representation of the words in a sentence.</p></li>
-<li><p><b>Prediction</b>: Once the feature set for each game is formed, they trained a Random Forest model using historic data and the numerical representation of the words in the sentence.</p></li>
-</ul>
-<p><br>Understanding the fundamental concepts and learning the “spacy” tool were required to properly assimilate these operations.
-<br>Spacy is an open source Python library for natural language processing that can be used to extract information from text.</p>
-<p><br>The following techniques were used in this task:</p>
-<ul class="simple">
-<li><p>Named Entity Recognition</p></li>
-<li><p>Spacy Entity Ruler</p></li>
-<li><p>TF-IDF vectorization</p></li>
-</ul>
-<div class="section" id="named-entity-recognition-ner">
-<h3>Named-Entity Recognition (NER)<a class="headerlink" href="#named-entity-recognition-ner" title="Permalink to this headline">¶</a></h3>
-<p>The task of identifying and categorizing key information in text is known as Named Entity Recognition (NER). It is also known as entity extraction or identification.
-Each detected entity is assigned to a predefined category. An NER model, for example, may detect the word “Mark” in a text and classify it as a “Person.”</p>
-<p>example :</p>
-<p><img alt="title" src="_images/ner.png" /></p>
-<p><img alt="title" src="_images/ner2.png" /></p>
-<p>In our case, identifying the names of the teams in the previews is a critical task that will allow us to extract the main features in our text.
-<br>This operation is not possible with the standard spacy NER because of errors in entity detection; spacy can consider a team name to be a person and vice versa.
-<br>To address this issue, we decided to build a model that will allow us to detect our own entities.</p>
-</div>
-<div class="section" id="train-a-model-to-detect-custom-entities">
-<h3>Train a model to detect custom entities<a class="headerlink" href="#train-a-model-to-detect-custom-entities" title="Permalink to this headline">¶</a></h3>
-<p>Before we implemented our model, which will allow us to automatically detect the names of the teams, we fed it a training dataset with labels generated by an external text annotation tool.
-<br>This annotation identifies the custom entities that our model will learn during its training.</p>
-<p><img alt="title" src="_images/ner3.png" />
-<img alt="title" src="_images/ner4.png" /></p>
-<p>we test again</p>
-<p><img alt="title" src="_images/ner5.png" /></p>
-</div>
-<div class="section" id="entity-ruler">
-<h3>Entity ruler<a class="headerlink" href="#entity-ruler" title="Permalink to this headline">¶</a></h3>
-<p>Using token-based rules or exact phrase matches, the entity ruler allows us to add spans to the Doc entities. It can be used in conjunction with the statistical EntityRecognizer to improve accuracy, or it can be used on its own to implement a rule-based entity recognition system.</p>
-<p>We took advantage of the dataset that we have which contains the teams and their different names.
-in this sense we have linked each name or nickname of a team to its main entity</p>
-<p><img alt="title" src="_images/ner6.png" /></p>
-<p>For example the nickname Spurs is now detectable in the text that is linked to the Tottenham Hotspur entity</p>
-<p><img alt="title" src="_images/ner7.png" /></p>
-</div>
-<div class="section" id="get-the-names-of-the-coaches">
-<h3>Get the names of the coaches<a class="headerlink" href="#get-the-names-of-the-coaches" title="Permalink to this headline">¶</a></h3>
-<p>We also noticed that in most of the previews, we find the names of the managers but not the names of the teams, so to ensure the extraction of information, we used a database that we have that contains a history of managers for each team.<br>As a result, it is now easier to identify the section of the text that refers to one of the two teams.</p>
-<p>Example of the dataset</p>
-<p><img alt="title" src="_images/coach1.png" /></p>
-<p>The final output: for each preview, we have the coaches of each team.</p>
-<p><img alt="title" src="_images/coach2.png" /></p>
-</div>
-<div class="section" id="previews-preprocessing">
-<h3>Previews Preprocessing<a class="headerlink" href="#previews-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>First of all, beginning with the tokenization step, which is the task of chopping up texts into pieces in order to remove stop words such as (the,a,an,so,what..). We also removed all punctuation because it isn’t important in the text, and then we used a lemmatization technique that allows for lexical processing, such as (runs, running,ran) =&gt; run.</p>
-<p>Example of text</p>
-<p><img alt="title" src="_images/text1.png" /></p>
-<p><img alt="title" src="_images/token.png" /></p>
-<p>We continue our normalization and move on to the next step, which is detecting the names of the two teams, the names of the coaches, and changing their names by hometeam, awayteam, homecoach, and awaycoach.The reason for this is so that our model’s predictions can generalize.
-<br>We noticed that the words ‘hotst,’ ‘home side,’ and ‘visitors,’ which refer to the home team and away team, are frequently used in the previews, and they have been changed.</p>
-<p>We take the same example:</p>
-<p><img alt="title" src="_images/text2.png" /></p>
-<p>Preview after cleanning</p>
-<p><img alt="title" src="_images/preview.png" /></p>
-<p>Preview after normalization</p>
-<p><img alt="title" src="_images/preview2.png" /></p>
-</div>
-<div class="section" id="modeling">
-<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
-<p>When the text processing phase is completed, it is time to begin the modeling phase.
-<br>However, our model will not be able to understand these raw texts, so we must convert them into vectors, which are digital representations of these character strings.
-<br>So the idea is to extract some textual characteristic so that the model can train.
-<br>Among the vectorization techniques, we highlight the bag of words: it is a very simple technique that calculates the vectors of a text based on the frequency of vocabulary words.
-It is simple to interpret and only refers to the frequency of vocabulary words in a given document.
-<br>As a result, articles, prepositions, and conjunctions that do not contribute much to meaning are just as important as adjectives or verbs.
-<br>There are other techniques that, in general, work better in machine learning models to address this issue.</p>
-<p>For instance, we discover TF-IDF: term frequency-inverse document frequency.
-<br>The idea behind the TF-IDF approach is that words that appear less frequently in all documents but more frequently in individual documents contribute more to classification.
-these terms can be calculated as follows:</p>
-<p><img alt="title" src="_images/tfidf.png" /></p>
-<div class="section" id="get-target-values">
-<h4>Get target values<a class="headerlink" href="#get-target-values" title="Permalink to this headline">¶</a></h4>
-<p>To enable our model to train and make predictions, we must first provide the target values (the outputs of the matches).</p>
-<p>We have set two target values:</p>
-<ul class="simple">
-<li><p>The outcome of a match =&gt; home win, away win, draw</p></li>
-<li><p>The goal difference =&gt; the difference in goals scored</p></li>
-</ul>
-<p><img alt="title" src="_images/final_data.png" /></p>
-</div>
-<div class="section" id="the-proportions-of-the-results">
-<h4>The proportions of the results<a class="headerlink" href="#the-proportions-of-the-results" title="Permalink to this headline">¶</a></h4>
-<p>It is worth noting that the class distribution of English Premier League games that we have from 2009 to 2022 is 45% home wins, draws 25% and away wins 30%.</p>
-<p><img alt="title" src="_images/stats.png" /></p>
-</div>
-</div>
-<div class="section" id="reference">
-<h3>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h3>
-<!-- BIBLIOGRAPHY START -->
-<div class="csl-bib-body">
-  <div class="csl-entry"><i id="zotero|11983139/J4T53NKQ"></i>Beal, R., Middleton, S. E., Norman, T. J., &#38; Ramchurn, S. D. (2020). Combining Machine Learning and Human Experts to Predict Match Outcomes in Football: A Baseline Model. <i>arXiv:2012.04380 [Cs]</i>. http://arxiv.org/abs/2012.04380</div>
-</div>
-<!-- BIBLIOGRAPHY END --></div>
-</div>
 </div>
 </div>
 
@@ -478,6 +259,13 @@ these terms can be calculated as follows:</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="Literature_review.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Literature review</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

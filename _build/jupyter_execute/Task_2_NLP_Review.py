@@ -23,7 +23,7 @@
 # 
 # - Spacy Entity Ruler 
 # 
-# - TF-IDF vectorization
+# - Count vectorization
 
 # ## Named-Entity Recognition (NER)
 
@@ -57,7 +57,7 @@
 # Using token-based rules or exact phrase matches, the entity ruler allows us to add spans to the Doc entities. It can be used in conjunction with the statistical EntityRecognizer to improve accuracy, or it can be used on its own to implement a rule-based entity recognition system.
 
 # We took advantage of the dataset that we have which contains the teams and their different names.
-# in this sense we have linked each name or nickname of a team to its main entity
+# In this sense we have linked each name or nickname of a team to its main entity
 
 # ![title](images/ner6.png)
 
@@ -92,7 +92,7 @@
 # ![title](images/token.png)
 
 # We continue our normalization and move on to the next step, which is detecting the names of the two teams, the names of the coaches, and changing their names by hometeam, awayteam, homecoach, and awaycoach.The reason for this is so that our model's predictions can generalize.
-# <br>We noticed that the words 'hotst,' 'home side,' and 'visitors,' which refer to the home team and away team, are frequently used in the previews, and they have been changed.
+# <br>We noticed that the words 'hosts,' 'home side,' and 'visitors,' which refer to the home team and away team, are frequently used in the previews, and they have been changed.
 
 # We take the same example:
 
@@ -106,21 +106,35 @@
 
 # ![title](images/preview2.png)
 
+# ## Allocation of texts
+
+# This section consists of assigning each sentence to the appropriate team. In a preview, for example, the journalist may discuss squad A or team B. As a result, we will have three columns: one for sentences about team A, another for sentences about team B, and a third for sentences about both teams at the same time.
+
 # ## Modeling
 
-# When the text processing phase is completed, it is time to begin the modeling phase.
-# <br>However, our model will not be able to understand these raw texts, so we must convert them into vectors, which are digital representations of these character strings.
-# <br>So the idea is to extract some textual characteristic so that the model can train.
+# ### Vectorization
+
+# When the text processing and allocation phases are completed, it is time to begin the modeling phase.
+# <br>However, our model will not be able to understand these raw texts, so we must convert them into vectors, which are digital representations of these character strings.Here, the goal is to extract some textual feature so that the model can learn.
 # <br>Among the vectorization techniques, we highlight the bag of words: it is a very simple technique that calculates the vectors of a text based on the frequency of vocabulary words.
 # It is simple to interpret and only refers to the frequency of vocabulary words in a given document.
 # <br>As a result, articles, prepositions, and conjunctions that do not contribute much to meaning are just as important as adjectives or verbs.
-# <br>There are other techniques that, in general, work better in machine learning models to address this issue.
+# <br>An example for the count vectorization technique:
 
-# For instance, we discover TF-IDF: term frequency-inverse document frequency.
+# ![title](images/countvector.png)
+
+# <br>There are other techniques that, in general, work better in machine learning models to address this issue such as TF-IDF: term frequency-inverse document frequency.
 # <br>The idea behind the TF-IDF approach is that words that appear less frequently in all documents but more frequently in individual documents contribute more to classification.
 # these terms can be calculated as follows:
 
 # ![title](images/tfidf.png)
+
+# It should be emphasized that for this work, we will utilize the count vectorizer approach to vectorize the preview texts.
+# <br>This function comprises certain hyperparameters that must be fixed and find the best combinations in order to increase the quality of the vectors.
+# <br>Among these hyperparameters, we can find:
+# - stop_words: CountVectorizer provides a predefined set of stop words; in our case, we can specify 'english.' 
+# - ngram_range: the number of word combinations to consider, for example (1,1) takes only tokens, whereas (1,2) specifies that we want to consider both unigrams (single words) and bigrams (combination of 2 words)
+# - min_df:stands for minimum document frequency; it disregards words with a document frequency that is strictly lower than the specified threshold.
 
 # ### Get target values
 
@@ -128,9 +142,9 @@
 # 
 # We have set two target values:
 # 
-# - The outcome of a match => home win, away win, draw
+# - The outcome of a match: home win, away win, draw
 #     
-# - The goal difference => the difference in goals scored
+# - The goal difference: the difference in goals scored
 
 # ![title](images/final_data.png)
 
@@ -139,6 +153,38 @@
 # It is worth noting that the class distribution of English Premier League games that we have from 2009 to 2022 is 45% home wins, draws 25% and away wins 30%.
 
 # ![title](images/stats.png)
+
+# ### Split previews into train and test dataset
+
+# Before setting up a machine learning model, we must divide our previews into train and test data. the train dataset is used to train the machine learning model and the test dataset is to assess the fit, which is data that the model has never seen before. To accomplish this, we will split the data into 70% train and 30% test without applying a shuffle to avoid distorting the temporal order of the matches.
+
+# ### The classifier
+
+# There are various methods in machine learning for dealing with classification or regression problems that are highly fascinating to try.
+# <br>In this work, we will use a random forest classifier that takes vectorized texts as input to predict the outcomes of football matches(Home win, Away win, Draw).
+# <br> A random forest's fundamental notion is to aggregate a large number of individual decision trees into a single model that function as an ensemble. All individual tree projections are pooled, and the class with the highest votes becomes our model's prediction.
+# <br>In addition, we can experiment with several hyperparameters in the Random forest classifier to increase model performance, such as:
+# - n_estimators: the number of trees that the classifier will consider.
+# - max_depth: the longest path from the root node to the leaf node.
+# - min_sample_split: the minimal amount of observations required to split any given node.
+# - Criterion: a function that determines how good a split is. we can experiment with (gini,entropy) values.
+
+# ## Model Evaluation
+
+# Access the true performance of a model is key in its validation step. It allows the modeller to anticipate the capacity of the model to generalise and keep similar predictive power to what has been observed in the training/validation phase.<br>Predicting the outcome of a football game is no exception and usually the same step used when validating any classification model can be followed.<br>Having said that, predicting the outcome of a football game has 2 particular aspects:
+# - Existence of a solid Benchmark producing prediction: the betting market
+# - Predictions can be used in a direct investment strategy where economical outcome can be simulated/observed
+
+# Because accuracy and precision may not always indicate model capability, there are alternative more effective criteria for measuring model performance for our purpose.
+# In this regard, we have created a R package that will enable us to set up the following metrics:
+# - Log loss: For each occurrence, log loss is the negative average of the log of corrected estimated probabilities. It considers the predictability of the result. Each estimated probability is compared to the actual class output value (0 or 1), and a score is computed that penalizes the probability based on the difference between the expected and actual values. The penalty is logarithmic, with a low score for little variations (0.1 or 0.2) and a high score for major differences.
+# ![title](images/LOG.png)
+# - Brier Score: It is an evaluation metric that is used to check the goodness of a predicted probability score. It is very similar to the mean squared error, but it is only applied to prediction probability scores with values ranging from 0 to 1. It is also similar to the log-loss evaluation metric, but the only difference is that it is gentler in penalizing inaccurate predictions than log loss. The best has a score of 0.0, while the worst has a value of 1.0.
+# ![title](images/BR.png)
+# - Residual diagnosis: It is the discrepancy between the observed and estimated values. They're a diagnostic tool for evaluating the quality of a model. It aids in the visualization of errors distribution.
+# - Calibration Plot: In general, we anticipate the class value that has the best probability of being the true class label for any classification task. However, there are situations when we need to estimate the likelihood of a data instance belonging to each class label. It can assist us assess how decisive a classification model is and grasp how'sure' a model is when predicting a class label.The ideal calibrated model's curve is a linear straight line traveling linearly from (0, 0).
+# - Tailored scoring rules: The key notion is that getting a higher score than your benchmark isn't enough (market). You must outperform it by a comfortable margin that allows you to benefit. To put it another way, we're comparing model forecasts to those of bookies.
+# -  Trading simulation strategy : We provide the necessary investment instruments for evaluating our model's success. To that end, we provide functions for calculating the amount invested each transaction as well as the projected return on each transaction.
 
 # ## Reference
 
