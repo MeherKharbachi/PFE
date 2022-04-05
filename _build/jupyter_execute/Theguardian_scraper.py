@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # The Guardian Scraper
-# 
-# > Scraping Premier League Previews from the Guardian.
+# # Data collection
 
-# To reach the aim of our project, we have begun the first task, which is to collect football experts' comments and data from English Premier League matches.
-# <br>For this task, we will use match previews from "The Guardian." It goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
+# Data is essential in all activities, but gathering it appears to be a difficult task.
+# It is required for any data science project because it is used to build a mathematical model to detect the most important trends.The better the quality of our data, the better the model's performance.
+# <br>For our project, data is a critical tool for developing a multi-task learning model.
+# <br>And, as mentioned in the previous chapter, our goal is to use previews texts written by human football experts that describe the environment and pre-match events to predict the outcomes of football matches. 
+# <br>To reach the aim of our project, we have begun the first task, which is to collect football previews from The Guardian's digital edition.
+# <br>It should be noted that this project is adaptable to any football league or data source. However, this option was chosen because the textual data is readily available, structured, and plentiful.It goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
 # <br>Indeed, "The Guardian's" football experts publish previews every week, usually two or three days before the matches.
 # <br>In this regard, we began by creating a data extraction tool that will allow us to extract this information on a regular basis.
 # <br>The information to be extracted is as follows:
@@ -38,6 +40,8 @@
 # |   We are not sure if the names of the teams are the same as the ones in Opta|Set up a dictionary or check manually to map teams to their IDs|
 # |When we send many requests, the guardian server blocks your IP address, which is interpreted as a DDOS attack|Do a sleep of a random x seconds between requests or change IP address and work with rotating proxy|
 # 
+
+#  
 
 # <b>The guardian</b> previews are spread across several pages, so our extraction tool will go through all of them, extracting the previews as it goes.
 # <br>Indeed, the scraper extracts information from <b>Premier League</b> match previews using two methods:

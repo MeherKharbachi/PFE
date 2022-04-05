@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Task 2 NLP Review
+# # Natural language processing Task
 
 # After completing our first task, which was to extract previews from the Guardian website, we began our second task, which was to reproduce the results of the <cite id="cfvjb"><a href="#zotero|11983139/J4T53NKQ">(Beal et al., 2020)</a></cite> article by processing and analyzing the texts that we had extracted.
 # The article's authors proceeded as follows:
