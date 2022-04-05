@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Guardian Scraper &#8212; Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
+    <title>Data collection &#8212; Predicting Football Match Outcomes using Machine Learning and Human Experts input</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   The Guardian Scraper
+   Data collection
   </a>
  </li>
  <li class="toctree-l1">
@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The Guardian Scraper</h1>
+                <h1>Data collection</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -264,13 +264,14 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-guardian-scraper">
-<h1>The Guardian Scraper<a class="headerlink" href="#the-guardian-scraper" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>Scraping Premier League Previews from the Guardian.</p>
-</div></blockquote>
-<p>To reach the aim of our project, we have begun the first task, which is to collect football experts’ comments and data from English Premier League matches.
-<br>For this task, we will use match previews from “The Guardian.” It goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
+  <div class="tex2jax_ignore mathjax_ignore section" id="data-collection">
+<h1>Data collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h1>
+<p>Data is essential in all activities, but gathering it appears to be a difficult task.
+It is required for any data science project because it is used to build a mathematical model to detect the most important trends.The better the quality of our data, the better the model’s performance.
+<br>For our project, data is a critical tool for developing a multi-task learning model.
+<br>And, as mentioned in the previous chapter, our goal is to use previews texts written by human football experts that describe the environment and pre-match events to predict the outcomes of football matches.
+<br>To reach the aim of our project, we have begun the first task, which is to collect football previews from The Guardian’s digital edition.
+<br>It should be noted that this project is adaptable to any football league or data source. However, this option was chosen because the textual data is readily available, structured, and <a class="reference external" href="http://plentiful.It">plentiful.It</a> goes back far enough, from 2009 to today, to allow us to integrate deep neural networks.
 <br>Indeed, “The Guardian’s” football experts publish previews every week, usually two or three days before the matches.
 <br>In this regard, we began by creating a data extraction tool that will allow us to extract this information on a regular basis.
 <br>The information to be extracted is as follows:</p>
